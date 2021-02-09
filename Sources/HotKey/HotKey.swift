@@ -6,6 +6,7 @@ public final class HotKey {
 	// MARK: - Types
 
 	public typealias Handler = () -> Void
+    public typealias KeypressFilter = () -> Bool
 
 	// MARK: - Properties
 
@@ -14,6 +15,7 @@ public final class HotKey {
 	public let keyCombo: KeyCombo
 	public var keyDownHandler: Handler?
 	public var keyUpHandler: Handler?
+    public var keypressFilter: KeypressFilter?
     public var isPaused = false {
         didSet {
             if isPaused {

@@ -123,6 +123,12 @@ final class HotKeysController {
 			return OSStatus(eventNotHandledErr)
 		}
 
+        if let keypressFilter = hotKey.keypressFilter {
+            if keypressFilter() {
+                return CallNextEventHandler(event, eventHandler)
+            }
+        }
+
 		// Call the handler
 		switch GetEventKind(event) {
 		case UInt32(kEventHotKeyPressed):
