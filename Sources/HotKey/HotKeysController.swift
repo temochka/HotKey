@@ -123,10 +123,8 @@ final class HotKeysController {
 			return OSStatus(eventNotHandledErr)
 		}
 
-        if let keypressFilter = hotKey.keypressFilter {
-            if keypressFilter() {
-                return CallNextEventHandler(event, eventHandler)
-            }
+        if let keypressFilter = hotKey.keypressFilter, keypressFilter() {
+            return CallNextEventHandler(eventHandler, event)
         }
 
 		// Call the handler
